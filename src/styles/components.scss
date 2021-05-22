@@ -1,0 +1,10 @@
+@import './vars';
+
+button, a {
+    cursor: pointer;
+    transition: opacity .15s;
+    
+    &:not(.opaque):hover {
+        opacity: .85;
+    }
+}
