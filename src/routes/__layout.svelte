@@ -46,7 +46,7 @@
             { label: 'Questions', icon: question, href: base + '/questions' }
         ],
         bottomRoutes: [
-            { label: 'Retour', icon: back, href: '/browse' }
+            { label: 'Retour', icon: back, href: '/browse/' + chapter.subject }
         ]
     } : {
         title: '¿ Salut ça taff ?',

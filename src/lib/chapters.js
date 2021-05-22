@@ -26,5 +26,7 @@ export default [
         subjects: [],
         exercices: [],
         questions: []
-    }
+    },
+    { id: 2, subject: 'maths', title: 'Matrices', lessons: [], subjects: [], exercises: [], questions: [] },
+    { id: 3, subject: 'maths', title: 'Séries numériques', lessons: [], subjects: [], exercises: [], questions: [] }
 ];
