@@ -4,7 +4,7 @@ import sveltePreprocess from 'svelte-preprocess';
 const config = {
     preprocess: sveltePreprocess(),
     kit: {
-        target: '#svelte'
+        target: '#app'
     }
 };
 

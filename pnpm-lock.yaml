@@ -1,19 +1,15 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@fontsource/fira-mono': ^4.2.2
-  '@lukeed/uuid': ^2.0.0
+  '@material-icons/svg': ^1.0.10
   '@sveltejs/kit': next
-  cookie: ^0.4.1
   normalizecss: ^3.0.0
   sass: ^1.34.0
   svelte: ^3.34.0
   svelte-preprocess: ^4.7.3
 
 dependencies:
-  '@fontsource/fira-mono': 4.3.0
-  '@lukeed/uuid': 2.0.0
-  cookie: 0.4.1
+  '@material-icons/svg': 1.0.10
   normalizecss: 3.0.0
 
 devDependencies:
@@ -24,20 +20,8 @@ devDependencies:
 
 packages:
 
-  /@fontsource/fira-mono/4.3.0:
-    resolution: {integrity: sha512-EizsZfvV/MLLbOUyonZV6vzispTKOkZrIhWcy3W2Ryn8OLaYw+af34DOfUpIN8U8Q8/wO5lU90iPyXePqmpRdg==}
-    dev: false
-
-  /@lukeed/csprng/1.0.0:
-    resolution: {integrity: sha512-ruuGHsnabmObBdeMg3vKdGRmh06Oog3eFpf/Tk6X0kDSJDpJTDCj2dqdp1+0VjzIUgHlFF9GBm7uFqfYhhdX9g==}
-    engines: {node: '>=8'}
-    dev: false
-
-  /@lukeed/uuid/2.0.0:
-    resolution: {integrity: sha512-dUz8OmYvlY5A9wXaroHIMSPASpSYRLCqbPvxGSyHguhtTQIy24lC+EGxQlwv71AhRCO55WOtgwhzQLpw27JaJQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@lukeed/csprng': 1.0.0
+  /@material-icons/svg/1.0.10:
+    resolution: {integrity: sha512-4/cDP/W7zHqBBEN4syTdME8evRX5PgMQAAHS9cLKfTV0FhpEmSkv7ZaqWqxQc/zQIdC6lBYlp1UeGYRuD+ZcwQ==}
     dev: false
 
   /@rollup/pluginutils/4.1.0:
@@ -172,11 +156,6 @@ packages:
   /colorette/1.2.2:
     resolution: {integrity: sha512-MKGMzyfeuutC/ZJ1cba9NqcNpfeqMUcYmyF1ZFY6/Cn7CNSAKx6a+s48sqLqyAiZuaP2TcqMhoo+dlwFnVxT9w==}
     dev: true
-
-  /cookie/0.4.1:
-    resolution: {integrity: sha512-ZwrFkGJxUR3EIoXtO+yVE69Eb7KlixbaeAWfBQB9vVsNn/o+Yw69gBWSSDK825hQNdN+wF8zELf3dFNl/kxkUA==}
-    engines: {node: '>= 0.6'}
-    dev: false
 
   /debug/4.3.2:
     resolution: {integrity: sha512-mOp8wKcvj7XxC78zLgw/ZA+6TSgkoE2C/ienthhRD298T7UNwAg9diBpLRxC0mOezLl4B0xV7M0cCO6P/O0Xhw==}
