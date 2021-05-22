@@ -1,9 +1,14 @@
 <script context="module">
-    export function load({ page }) {
+    import subjects from '$lib/subjects';
+
+    export function load({ page })
+    {
         const { id } = page.params;
 
         return {
-            props: { id }
+            props: {
+                subject: subjects.find(s => s.id === id)
+            }
         };
     }
 </script>
@@ -15,43 +20,35 @@
     import question from '@material-icons/svg/svg/question_answer/round.svg?raw';
 
     import SearchBar from '$lib/components/SearchBar.svelte';
+    import Property from '$lib/components/Property.svelte';
 
-    import subjects from '$lib/subjects';
-
-    export let id;
-    $: subject = subjects.find(s => s.id === id);
-
+    export let subject;
     let search = '';
 
     const properties = [
         { key: 'lessons', label: 'cours / fiche', icon: description },
         { key: 'subjects', label: 'sujet', icon: task },
-        { key: 'exercices', label: 'exercice', icon: done },
+        { key: 'exercises', label: 'exercice', icon: done },
         { key: 'questions', label: 'question', icon: question }
     ];
 </script>
 
-{#if subject}
-    <h1 id="title">{subject.label}</h1>
+<h1 id="title">{subject.label}</h1>
 
-    <SearchBar bind:value={search} />
+<SearchBar bind:value={search} />
 
-    <div id="chapters" class="column smooth-scroll">
-        {#each subject.chapters.filter(c => c.title.toLowerCase().includes(search.toLowerCase())) as chapter}
-            <div class="chapter card clickable column">
-                <div class="title">{chapter.title}</div>
-                <div class="properties column">
-                    {#each properties as { key, label, icon }}
-                        <div class="property">
-                            <div class="icon">{@html icon}</div>
-                            <div class="label">{chapter[key]} {label}{chapter[key] > 1 ? 's' : ''}</div>
-                        </div>
-                    {/each}
-                </div>
+<div id="chapters" class="column smooth-scroll">
+    {#each subject.chapters.filter(c => c.title.toLowerCase().includes(search.toLowerCase())) as chapter}
+        <a class="chapter card column" href={`/chapter/${subject.id}/${chapter.id}`} sveltekit:prefetch>
+            <div class="title">{chapter.title}</div>
+            <div class="properties column">
+                {#each properties as { key, label, icon }}
+                    <Property {icon} value={chapter[key]} {label} />
+                {/each}
             </div>
-        {/each}
-    </div>
-{/if}
+        </a>
+    {/each}
+</div>
 
 <style lang="scss">
     #title {
@@ -74,32 +71,6 @@
         .properties {
             margin-top: 15px;
             margin-left: 25px;
-
-            .property {
-                align-items: center;
-                margin-bottom: 2px;
-
-                .icon {
-                    $size: 32px;
-
-                    width: $size;
-                    height: $size;
-
-                    :global(svg path) {
-                        fill: #949C9C;
-                    }
-                }
-
-                .label {
-                    margin-left: 2px;
-                    margin-bottom: 5px;
-
-                    color: #515555;
-
-                    font-weight: 500;
-                    font-size: 18px;
-                }
-            }
         }
     }
 </style>

@@ -1,3 +1,23 @@
+<script context="module">
+    import chapters from '$lib/chapters';
+
+    export function load({ page })
+    {
+        if (page.path.startsWith('/chapter/')) {
+            const { subject, chapter } = page.params;
+
+            return {
+                props: {
+                    base: `/chapter/${subject}/${chapter}`,
+                    chapter: chapters.find(c => c.subject === subject && c.id === ~~chapter)
+                }
+            };
+        }
+
+        return {};
+    }
+</script>
+
 <script>
     import '../app.scss';
 
@@ -6,12 +26,29 @@
     import person from '@material-icons/svg/svg/person/round.svg?raw';
     import logout from '@material-icons/svg/svg/logout/round.svg?raw';
     import info from '@material-icons/svg/svg/info/round.svg?raw';
-
-    import { chapter } from '$lib/stores';
+    import description from '@material-icons/svg/svg/description/round.svg?raw';
+    import task from '@material-icons/svg/svg/task/round.svg?raw';
+    import done from '@material-icons/svg/svg/done_all/round.svg?raw';
+    import question from '@material-icons/svg/svg/question_answer/round.svg?raw';
+    import back from '@material-icons/svg/svg/arrow_back/round.svg?raw';
 
     import Navigation from '$lib/components/Navigation.svelte';
 
-    $: nav = $chapter ? {} : {
+    export let base;
+    export let chapter;
+
+    $: nav = chapter ? {
+        title: chapter.title,
+        topRoutes: [
+            { label: 'Cours / fiches', icon: description, href: base + '/lessons' },
+            { label: 'Sujets', icon: task, href: base + '/subjects' },
+            { label: 'Exercices', icon: done, href: base + '/exercises' },
+            { label: 'Questions', icon: question, href: base + '/questions' }
+        ],
+        bottomRoutes: [
+            { label: 'Retour', icon: back, href: '/browse' }
+        ]
+    } : {
         title: '¿ Salut ça taff ?',
         topRoutes: [
             { label: 'Accueil', icon: home, href: '/' },
@@ -55,6 +92,8 @@
 
         #title {
             font-size: 32px;
+
+            white-space: nowrap;
         }
 
         #user {

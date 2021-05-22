@@ -6,10 +6,19 @@
     <title>{title('Accueil')}</title>
 </svelte:head>
 
-<h1 id="title">¿ Salut ça taff ?</h1>
+<div id="index">
+    <h1 id="title">¿ Salut ça taff ?</h1>
+</div>
 
 <style lang="scss">
     @import '../styles/vars';
+
+    #index {
+        flex-grow: 1;
+
+        justify-content: center;
+        align-items: center;
+    }
 
     #title {
         font-family: $font-circular;
