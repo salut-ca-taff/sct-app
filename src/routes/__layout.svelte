@@ -21,6 +21,8 @@
 <script>
     import '../app.scss';
 
+    import { onMount } from 'svelte';
+
     import home from '@material-icons/svg/svg/home/round.svg?raw';
     import sort from '@material-icons/svg/svg/sort/round.svg?raw';
     import person from '@material-icons/svg/svg/person/round.svg?raw';
@@ -32,7 +34,14 @@
     import question from '@material-icons/svg/svg/question_answer/round.svg?raw';
     import back from '@material-icons/svg/svg/arrow_back/round.svg?raw';
 
+    import avatar from '../assets/images/user.jpg';
+
+    import { page } from '$app/stores';
+    import { goto } from '$app/navigation';
+
     import Navigation from '$lib/components/Navigation.svelte';
+
+    import { user } from '$lib/auth';
 
     export let base;
     export let chapter;
@@ -60,22 +69,31 @@
             { label: 'A Propos', icon: info, href: '/about' }
         ]
     };
+
+    onMount(() => {
+        // TODO: Replace with Svelte-Kit server side logic
+        if (!$user && !$page.path.startsWith('/auth')) {
+            goto('/auth/login');
+        }
+    });
 </script>
 
-<div id="sidenav" class="column">
-    <h1 id="title">{nav.title}</h1>
+{#if $user}
+    <div id="sidenav" class="column">
+        <h1 id="title">{nav.title}</h1>
 
-    <Navigation routes={nav.topRoutes} />
-    <Navigation routes={nav.bottomRoutes} />
+        <Navigation routes={nav.topRoutes} />
+        <Navigation routes={nav.bottomRoutes} />
 
-    <div id="user">
-        <img id="avatar" alt="Photo de profil" src="https://avatars.githubusercontent.com/u/8712146?v=4" />
-        <div class="column">
-            <span class="name">Adrien Navratil</span>
-            <span class="school">EPITA</span>
+        <div id="user">
+            <img id="avatar" alt="Photo de profil" src={avatar} />
+            <div class="column">
+                <span class="name">{$user.username}</span>
+                <span class="school">{$user.school}</span>
+            </div>
         </div>
     </div>
-</div>
+{/if}
 
 <div id="content">
     <slot />

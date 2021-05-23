@@ -1,6 +1,6 @@
 @import './vars';
 
-button, a {
+button, a, input[type=submit]:not(:disabled) {
     cursor: pointer;
     transition: opacity .15s;
     
@@ -51,5 +51,38 @@ button, a {
     
     &::-webkit-scrollbar {
         display: none;
+    }
+}
+
+input[type=text], input[type=password], input[type=email], input[type=submit] {
+    outline: none;
+    border: none;
+    border-radius: 4px;
+}
+
+input[type=text], input[type=password], input[type=email] {
+    background-color: #DEE5E5;
+    
+    padding: 15px 20px 10px;
+    width: 100%;
+    
+    box-sizing: border-box;
+    
+    &:disabled {
+        color: #999999;
+    }
+}
+
+input[type=submit] {
+    padding: 13px 0 10px;
+    
+    background-color: $color-primary;
+    color: white;
+    
+    font-size: 18px;
+    font-weight: 500;
+    
+    &:disabled {
+        color: #DDDDDD;
     }
 }

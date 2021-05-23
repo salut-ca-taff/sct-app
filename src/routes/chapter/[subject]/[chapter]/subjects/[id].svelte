@@ -3,13 +3,13 @@
 
     export function load({ page })
     {
-        const { subject, chapter, lesson } = page.params;
+        const { subject, chapter, id } = page.params;
 
         return {
             props: {
-                lesson: chapters
-                    .find(c => c.subject === subject && c.id === ~~chapter).lessons
-                    .find(l => l.id === ~~lesson)
+                subject: chapters
+                    .find(c => c.subject === subject && c.id === ~~chapter).subjects
+                    .find(l => l.id === ~~id)
             }
         };
     }
@@ -18,11 +18,11 @@
 <script>
     import ContentView from '$lib/components/ContentView.svelte';
 
-    export let lesson;
+    export let subject;
 </script>
 
-<ContentView resource={lesson}>
-    <iframe id="content" src={lesson.content}></iframe>
+<ContentView resource={subject}>
+    <iframe id="content" src={subject.content[0]}></iframe>
 </ContentView>
 
 <style lang="scss">
